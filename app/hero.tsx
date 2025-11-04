@@ -1,8 +1,6 @@
 "use client"
 import Image from "next/image"
 import { useEffect, useState, useMemo } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAreaChart, faDownload, faTerminal } from "@fortawesome/free-solid-svg-icons"
 
 export default function Hero() {
   const [index, setIndex] = useState(0)
@@ -37,7 +35,7 @@ export default function Hero() {
 
   return (
     <>
-      <section id="hero" className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-5 md:px-10 lg:px-20 py-20">
+      <section id="home" className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-5 md:px-10 lg:px-20 py-20">
         <div className="flex flex-col gap-3">
           <h1 className="text-text-primary text-3xl md:text-4xl lg:text-5xl font-bold">Hi, I`m Ahmad Rizki Hartawan 👋</h1>
           <div className="relative">
@@ -69,15 +67,24 @@ export default function Hero() {
           </span>
           <div className="flex flex-row gap-5 mt-5">
             <button className="text-sm md:text-md lg:text-lg hover:bg-[#18336a] active:bg-[#18336a] border border-text-primary bg-text-thirdary text-text-primary px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
-              <FontAwesomeIcon icon={faTerminal} className="text-text-primary w-3" /> Explore My Project
+              <svg className="w-5 md:w-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+              </svg>
+              Explore My Project
             </button>
             <button className="text-sm md:text-md lg:text-lg hover:bg-foreground active:bg-foreground border border-text-text-primary text-text-primary px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
-              <FontAwesomeIcon icon={faDownload} className="text-text-primary w-3" /> Download My CV
+              <svg className="w-5 md:w-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
+              </svg>
+              Download My CV
             </button>
           </div>
           <div className="mb-10 md:mb-0 font-semibold">
             <span className="text-sm md:text-md lg:text-lg mt-5 text-text-primary font-semibold flex flex-row items-center gap-2">
-              <FontAwesomeIcon icon={faAreaChart} className="w-3" /> Quick Stats:
+              <svg className="w-5 md:w-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" strokeLinejoin="round" strokeWidth="2" d="M12.1429 11v9m0-9c-2.50543-.7107-3.19099-1.39543-6.13657-1.34968-.48057.00746-.86348.38718-.86348.84968v7.2884c0 .4824.41455.8682.91584.8617 2.77491-.0362 3.45995.6561 6.08421 1.3499m0-9c2.5053-.7107 3.1067-1.39542 6.0523-1.34968.4806.00746.9477.38718.9477.84968v7.2884c0 .4824-.4988.8682-1 .8617-2.775-.0362-3.3758.6561-6 1.3499m2-14c0 1.10457-.8955 2-2 2-1.1046 0-2-.89543-2-2s.8954-2 2-2c1.1045 0 2 .89543 2 2Z" />
+              </svg>
+              Quick Stats:
             </span>
             <ul className="text-text-primary mt-2 flex flex-row gap-2 md:gap-5">
               <li className="items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-foreground p-3 rounded-full">

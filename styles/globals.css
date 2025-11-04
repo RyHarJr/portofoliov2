@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #7e8285;
+  --thirdary: #e0e7ff;
   --text-primary: #000000;
   --text-secondary: #5c5f62;
   --text-thirdary: #244d9f;
@@ -11,6 +12,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-thirdary: var(--thirdary);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-thirdary: var(--text-thirdary);
@@ -22,6 +24,7 @@
   :root {
     --background: #121E28;
     --foreground: #182632;
+    --thirdary: #101828;
     --text-primary: #ffffff;
     --text-secondary: #9ca3af;
   }
