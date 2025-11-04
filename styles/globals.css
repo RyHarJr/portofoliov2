@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #7e8285;
+  --text-primary: #000000;
+  --text-secondary: #5c5f62;
+  --text-thirdary: #244d9f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-thirdary: var(--text-thirdary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121E28;
+    --foreground: #182632;
+    --text-primary: #ffffff;
+    --text-secondary: #9ca3af;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@keyframes blink {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor {
+  animation: blink 2s infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+.neon {
+  box-shadow: 0 0 10px var(--color-text-thirdary),
+    0 0 20px var(--color-text-thirdary),
+    0 0 40px var(--color-text-thirdary),
+    0 0 80px var(--color-text-thirdary);
+
+  text-shadow: 0 0 5px var(--color-text-thirdary),
+    0 0 10px var(--color-text-thirdary),
+    0 0 20px var(--color-text-thirdary);
+}
