@@ -1,12 +1,32 @@
 @import "tailwindcss";
 
+/* 🎨 Default (Light Theme) */
 :root {
   --background: #ffffff;
-  --foreground: #7e8285;
+  --foreground: #ffffff;
   --thirdary: #e0e7ff;
   --text-primary: #000000;
   --text-secondary: #5c5f62;
-  --text-thirdary: #244d9f;
+  --button-hover: #c3c7cf;
+  --neon-color: #3b82f6; /* biru neon */
+  --button-hero: #2563eb; /* biru hero */
+  --button-hero-hover: #1d4ed8; /* biru hero hover */
+  --quick-stats-bg: #f3f4f6;
+}
+
+/* 🌙 Dark Theme (aktif saat class .dark ada di <html>) */
+.dark {
+  --background: #121E28;
+  --foreground: #182632;
+  --thirdary: #101828;
+  --text-primary: #ffffff;
+  --text-secondary: #9ca3af;
+  --button-hover: #1f3140;
+  --neon-color: #8b5cf6;
+  --button-hero: #7c3aed;
+  --button-hero-hover: #6d28d9;
+  --quick-stats-bg: #1e293b;
+  /* opsional: bisa ganti warna neon saat dark */
 }
 
 @theme inline {
@@ -15,26 +35,23 @@
   --color-thirdary: var(--thirdary);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
-  --color-text-thirdary: var(--text-thirdary);
+  --color-button-hover: var(--button-hover);
+  --color-neon: var(--neon-color);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-button-hero: var(--button-hero);
+  --color-button-hero-hover: var(--button-hero-hover);
+  --color-quick-stats-bg: var(--quick-stats-bg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #121E28;
-    --foreground: #182632;
-    --thirdary: #101828;
-    --text-primary: #ffffff;
-    --text-secondary: #9ca3af;
-  }
-}
-
+/* 🌈 Gunakan variable di seluruh body */
 body {
   background: var(--background);
   color: var(--foreground);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* ✨ Animasi cursor blink */
 @keyframes blink {
 
   0%,
@@ -53,6 +70,7 @@ body {
   animation: blink 2s infinite;
 }
 
+/* 🎈 Animasi floating */
 @keyframes float {
 
   0%,
@@ -69,13 +87,11 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
+/* 💡 Efek Neon Glow */
 .neon {
-  box-shadow: 0 0 10px var(--color-text-thirdary),
-    0 0 20px var(--color-text-thirdary),
-    0 0 40px var(--color-text-thirdary),
-    0 0 80px var(--color-text-thirdary);
-
-  text-shadow: 0 0 5px var(--color-text-thirdary),
-    0 0 10px var(--color-text-thirdary),
-    0 0 20px var(--color-text-thirdary);
+  box-shadow:
+    0 0 10px var(--neon-color),
+    0 0 20px var(--neon-color),
+    0 0 40px var(--neon-color),
+    0 0 80px var(--neon-color);
 }
