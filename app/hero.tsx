@@ -35,7 +35,7 @@ export default function Hero() {
 
   return (
     <>
-      <section id="home" className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-5 md:px-10 lg:px-20 py-20">
+      <section id="home" className="cursor-default grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-5 md:px-10 lg:px-20 py-20">
         <div className="flex flex-col gap-3">
           <h1 className="text-text-primary text-3xl md:text-4xl lg:text-5xl font-bold">Hi, I`m Ahmad Rizki Hartawan 👋</h1>
           <div className="relative">
@@ -66,13 +66,13 @@ export default function Hero() {
             </div>
           </span>
           <div className="flex flex-row gap-5 mt-5">
-            <button className="text-sm md:text-md lg:text-lg bg-button-hero hover:bg-button-hero-hover active:bg-button-hero-hover border border-text-primary bg-text-thirdary text-[#ffffff] px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
+            <button className="cursor-pointer text-sm md:text-md lg:text-lg bg-button-hero hover:bg-button-hero-hover active:bg-button-hero-hover border border-text-primary bg-text-thirdary text-[#ffffff] px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
               <svg className="w-5 md:w-6 text-[#ffffff]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
               </svg>
               Explore My Project
             </button>
-            <button className="text-sm md:text-md lg:text-lg hover:bg-button-hover active:bg-button-hover border border-text-text-primary text-text-primary px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
+            <button className="cursor-pointer text-sm md:text-md lg:text-lg hover:bg-button-hover active:bg-button-hover border border-text-text-primary text-text-primary px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
               <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
               </svg>
@@ -87,19 +87,19 @@ export default function Hero() {
               Quick Stats:
             </span>
             <ul className="text-text-primary mt-2 flex flex-row gap-2 md:gap-5">
-              <li className="items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full">
+              <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full">
                 <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                   <path fillRule="evenodd" d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z" clipRule="evenodd" />
                 </svg>
                 2+ years experience
               </li>
-              <li className="items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full">
+              <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full">
                 <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 8v8m0-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0a4 4 0 0 1-4 4h-1a3 3 0 0 0-3 3" />
                 </svg>
                 Javascript Main Language
               </li>
-              <li className="items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full">
+              <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full">
                 <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.122 17.645a7.185 7.185 0 0 1-2.656 2.495 7.06 7.06 0 0 1-3.52.853 6.617 6.617 0 0 1-3.306-.718 6.73 6.73 0 0 1-2.54-2.266c-2.672-4.57.287-8.846.887-9.668A4.448 4.448 0 0 0 8.07 6.31 4.49 4.49 0 0 0 7.997 4c1.284.965 6.43 3.258 5.525 10.631 1.496-1.136 2.7-3.046 2.846-6.216 1.43 1.061 3.985 5.462 1.754 9.23Z" />
                 </svg>
@@ -108,8 +108,10 @@ export default function Hero() {
             </ul>
           </div>
         </div>
-        <div className="md:ml-auto flex flex-col items-center justify-center">
-          <Image src="/images/hero.jpg" alt="Hero Image" width={350} height={350} className="rounded-full neon floating" />
+        <div className="flex flex-col items-center justify-center">
+          <div className="md:ml-auto flex flex-col items-center justify-center w-70 md:w-80 lg:w-90">
+            <Image src="/images/hero.jpg" alt="Hero Image" width={350} height={350} className="rounded-full neon floating" />
+          </div>
         </div>
       </section>
     </>

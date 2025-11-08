@@ -12,6 +12,8 @@
   --button-hero: #2563eb; /* biru hero */
   --button-hero-hover: #1d4ed8; /* biru hero hover */
   --quick-stats-bg: #f3f4f6;
+  --bg-project-card: #e1e1e1;
+  --text-project-card: #ffffff;
 }
 
 /* 🌙 Dark Theme (aktif saat class .dark ada di <html>) */
@@ -26,6 +28,8 @@
   --button-hero: #7c3aed;
   --button-hero-hover: #6d28d9;
   --quick-stats-bg: #1e293b;
+  --bg-project-card: #1e293b;
+  --text-project-card: #ffffff;
   /* opsional: bisa ganti warna neon saat dark */
 }
 
@@ -42,6 +46,8 @@
   --color-button-hero: var(--button-hero);
   --color-button-hero-hover: var(--button-hero-hover);
   --color-quick-stats-bg: var(--quick-stats-bg);
+  --color-bg-project-card: var(--bg-project-card);
+  --color-text-project-card: var(--text-project-card);
 }
 
 /* 🌈 Gunakan variable di seluruh body */
