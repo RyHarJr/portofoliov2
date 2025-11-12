@@ -101,6 +101,8 @@ export default function Contact() {
       setLoading(false)
 
       if (data.success) {
+        setName_comment("")
+        setMessage_comment("")
         setIsOpenComments(false)
         showAlert("success", "Comment added successfully")
 
