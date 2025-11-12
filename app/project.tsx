@@ -41,8 +41,16 @@ export default function Project() {
                         <span className="font-semibold">{project.tech.map((tech, index) => (index === project.tech.length - 1 ? tech : `${tech}, `))}</span>
                       </p>
                       <p className="mt-3 text-text-secondary">
-                        <span>Description: </span>
-                        <span className="font-semibold">{project.description}</span>
+                        <span>Feature: </span>
+
+                        {project.features.map((feature, index) => (
+                          <span key={index} className="flex flex-row items-center font-semibold">
+                            <svg key={index} className="mr-2 w-4 h-4 md:w-5 md:h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                            </svg>
+                            {feature}
+                          </span>
+                        ))}
                       </p>
                     </div>
 
@@ -78,33 +86,31 @@ const projectList = [
     title: "RyHar API",
     shortDescription: "Ini adalah project Rest API saya, yang dibuat untuk memberi fasilitas API yang terjangkau bagi temen'",
     createdAt: "2025-08-05",
-    description: `RyHar API adalah RESTful API yang dirancang untuk memberikan solusi pengembangan aplikasi yang cepat, aman, dan scalable.
-API ini memudahkan developer dalam mengintegrasikan berbagai fitur ke dalam aplikasi mereka dengan arsitektur yang efisien dan dokumentasi yang mudah dipahami.
-Dibangun menggunakan Next.js dan MongoDB, RyHar API mendukung format JSON standar serta struktur respons yang konsisten untuk pengalaman integrasi yang lancar.`,
+    features: ["Login", "Register", "Payment Gateway", "CRUD"],
     tech: ["React", "Next.js", "Tailwind", "TypeScript", "MongoDB", "Node.js"],
     githubUrl: "https://github.com/RyHarJr/rest-apiv2",
     liveDemoUrl: "https://api.ryhar.my.id",
   },
   {
     index: 1,
-    imagePath: "/images/project1.png",
-    title: "Project 1",
-    shortDescription: "Test",
+    imagePath: "/images/project2.png",
+    title: "Elaina Bot ( Whatsapp )",
+    shortDescription: "Ini adalah project whatsapp bot saya, yang dibuat dengan baileyss, bot ini bisa digunakan untuk berbagai tujuan.",
     createdAt: "2023-01-01",
-    description: "Panjang",
-    tech: ["React", "Next.js", "Tailwind"],
-    githubUrl: "https://github.com/RyHarJr/rest-apiv2",
-    liveDemoUrl: "https://api.ryhar.my.id",
+    features: ["CRUD", "Payment Gateway", "Download File", "AI", "API integration"],
+    tech: ["Node.JS", "LowDb", "Puppeteer", "JavaScript", "Baileys"],
+    githubUrl: "https://github.com/RyHarJr/Elaina",
+    liveDemoUrl: "https://wa.me/6287867234543",
   },
   {
     index: 2,
-    imagePath: "/images/project1.png",
-    title: "Project 1",
-    shortDescription: "Test",
-    createdAt: "2023-01-01",
-    description: "Panjang",
-    tech: ["React", "Next.js", "Tailwind"],
-    githubUrl: "https://github.com/RyHarJr/rest-apiv2",
-    liveDemoUrl: "https://api.ryhar.my.id",
+    imagePath: "/images/project3.png",
+    title: "Elaina Bot ( Telegram )",
+    shortDescription: "Ini adalah project telegram bot saya, yang dibuat dengan node-telegram-bot-api, bot ini bisa digunakan untuk berbagai tujuan.",
+    createdAt: "2025-05-09",
+    features: ["CRUD", "Payment Gateway", "Download File", "AI", "API integration"],
+    tech: ["Node.JS", "LowDb", "Puppeteer", "JavaScript", "node-telegram-bot-api"],
+    githubUrl: "https://github.com/RyHarJr/telegram-bot",
+    liveDemoUrl: "https://t.me/ryhar_bot",
   },
 ]
