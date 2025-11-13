@@ -77,7 +77,7 @@ export default function Header() {
 
         <div className="flex-row md:gap-5 lg:gap-7 mx-5 md:mx-10 hidden lg:flex">
           {shortCut.map((item, index) => (
-            <button onClick={() => handleScroll(item.link)} key={index} className={`${activeSection === item.name.toLowerCase() ? "text-text-secondary bg-button-hover" : "text-text-primary"} cursor-pointer text-sm md:text-md font-semibold gap-2 px-4 py-3 rounded-md flex flex-row items-center hover:scale-105 hover:bg-button-hover active:scale-105 active:bg-button-hover transition-transform duration-200 ease-in-out`}>
+            <button onClick={() => handleScroll(item.link)} key={index} className={`${activeSection === item.name.toLowerCase() ? "text-text-secondary bg-button-hover" : "text-text-primary"} cursor-pointer text-sm md:text-md font-semibold gap-2 px-4 py-3 rounded-md flex flex-row items-center hover:scale-105 hover:bg-button-hover active:scale-95 active:bg-button-hover transition-transform duration-200 ease-in-out`}>
               {item.d}
               {item.name}
             </button>
@@ -111,7 +111,7 @@ export default function Header() {
           {/* Mobile Menu Placeholder */}
           <div className="flex flex-col gap-5 bg-foreground absolute top-16 right-5 p-5 rounded-md shadow-md">
             {shortCut.map((item, index) => (
-              <button onClick={() => handleScroll(item.link)} key={index} className={`${activeSection === item.name.toLowerCase() ? "text-text-secondary" : "text-text-primary"} cursor-pointer text-sm md:text-md font-semibold gap-2 flex flex-row items-center hover:scale-105 hover:text-text-secondary active:scale-105 active:text-text-secondary transition-transform duration-200 ease-in-out`}>
+              <button onClick={() => handleScroll(item.link)} key={index} className={`${activeSection === item.name.toLowerCase() ? "text-text-secondary" : "text-text-primary"} cursor-pointer text-sm md:text-md font-semibold gap-2 flex flex-row items-center hover:scale-105 hover:text-text-secondary active:scale-95 active:text-text-secondary transition-transform duration-200 ease-in-out`}>
                 {item.d}
                 {item.name}
               </button>

@@ -62,7 +62,7 @@ export default function Hero() {
               <span className="mr-5">Follow me on:</span>
               <div className="flex flex-row gap-4">
                 {socialMediaList.map((item, index) => (
-                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="bg-button-hover p-2 rounded-full active:shadow-lg active:scale-105 hover:shadow:lg hover:scale-105 text-text-primary transition-transform duration-200 ease-in-out" key={index}>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="bg-button-hover p-2 rounded-full active:shadow-lg active:scale-95 hover:shadow-lg hover:scale-105 hover:bg-button-hero active:bg-button-hero text-text-primary transition-transform duration-200 ease-in-out" key={index}>
                     {item.icon}
                   </a>
                 ))}
@@ -91,7 +91,7 @@ export default function Hero() {
               </span>
               <ul className="text-text-primary mt-2 flex flex-row gap-2 md:gap-5">
                 {quickStatsList.map((stat, index) => (
-                  <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full" key={index}>
+                  <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-95 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full" key={index}>
                     {stat.icon}
                     <span className="mt-1">{stat.message}</span>
                   </li>
