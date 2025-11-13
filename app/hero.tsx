@@ -1,6 +1,8 @@
 "use client"
 import Image from "next/image"
 import { useEffect, useState, useMemo } from "react"
+import FadeRight from "@/components/animations/FadeRight"
+import FadeLeft from "@/components/animations/FadeLeft"
 
 export default function Hero() {
   const [index, setIndex] = useState(0)
@@ -46,61 +48,65 @@ export default function Hero() {
   return (
     <>
       <section id="home" className="cursor-default grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-5 md:px-10 lg:px-20 py-20">
-        <div className="flex flex-col gap-3">
-          <h1 className="text-text-primary text-3xl md:text-4xl lg:text-5xl font-bold">Hi, I`m Ahmad Rizki Hartawan 👋</h1>
-          <div className="relative">
-            <span className={`text-text-primary text-2xl font-semibold`}>{`${texts[index].substring(0, subIndex)}`}</span>
-            <span className="animate-cursor text-text-secondary text-2xl">|</span>
-          </div>
-          <div className="flex flex-row">
-            <p className="text-text-secondary">Halo! Saya suka ngoding dan bereksperimen dengan ide-ide baru. Bagi saya, setiap baris kode adalah cara untuk menghadirkan sesuatu yang bermanfaat dan keren di dunia digital.</p>
-          </div>
-          <span className="text-text-secondary flex flex-row">
-            <span className="mr-5">Follow me on:</span>
-            <div className="flex flex-row gap-4">
-              {socialMediaList.map((item, index) => (
-                <a href={item.href} target="_blank" rel="noopener noreferrer" className="bg-button-hover p-2 rounded-full active:shadow-lg active:scale-105 hover:shadow:lg hover:scale-105 text-text-primary transition-transform duration-200 ease-in-out" key={index}>
-                  {item.icon}
-                </a>
-              ))}
+        <FadeLeft>
+          <div className="flex flex-col gap-3">
+            <h1 className="text-text-primary text-3xl md:text-4xl lg:text-5xl font-bold">Hi, I`m Ahmad Rizki Hartawan 👋</h1>
+            <div className="relative">
+              <span className={`text-text-primary text-2xl font-semibold`}>{`${texts[index].substring(0, subIndex)}`}</span>
+              <span className="animate-cursor text-text-secondary text-2xl">|</span>
             </div>
-          </span>
-          <div className="flex flex-row gap-5 mt-5">
-            <button onClick={() => handleScroll("projects")} className="cursor-pointer text-sm md:text-md lg:text-lg bg-button-hero hover:bg-button-hero-hover active:bg-button-hero-hover border border-text-primary bg-text-thirdary text-[#ffffff] px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
-              <svg className="w-5 md:w-6 text-[#ffffff]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
-              </svg>
-              Explore My Project
-            </button>
-            <button className="cursor-pointer text-sm md:text-md lg:text-lg hover:bg-button-hover active:bg-button-hover border border-text-text-primary text-text-primary px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
-              <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
-              </svg>
-              Download My CV
-            </button>
-          </div>
-          <div className="mb-10 md:mb-0 font-semibold">
-            <span className="text-sm md:text-md lg:text-lg mt-5 text-text-primary font-semibold flex flex-row items-center gap-2">
-              <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" strokeLinejoin="round" strokeWidth="2" d="M12.1429 11v9m0-9c-2.50543-.7107-3.19099-1.39543-6.13657-1.34968-.48057.00746-.86348.38718-.86348.84968v7.2884c0 .4824.41455.8682.91584.8617 2.77491-.0362 3.45995.6561 6.08421 1.3499m0-9c2.5053-.7107 3.1067-1.39542 6.0523-1.34968.4806.00746.9477.38718.9477.84968v7.2884c0 .4824-.4988.8682-1 .8617-2.775-.0362-3.3758.6561-6 1.3499m2-14c0 1.10457-.8955 2-2 2-1.1046 0-2-.89543-2-2s.8954-2 2-2c1.1045 0 2 .89543 2 2Z" />
-              </svg>
-              Quick Stats:
+            <div className="flex flex-row">
+              <p className="text-text-secondary">Halo! Saya suka ngoding dan bereksperimen dengan ide-ide baru. Bagi saya, setiap baris kode adalah cara untuk menghadirkan sesuatu yang bermanfaat dan keren di dunia digital.</p>
+            </div>
+            <span className="text-text-secondary flex flex-row">
+              <span className="mr-5">Follow me on:</span>
+              <div className="flex flex-row gap-4">
+                {socialMediaList.map((item, index) => (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="bg-button-hover p-2 rounded-full active:shadow-lg active:scale-105 hover:shadow:lg hover:scale-105 text-text-primary transition-transform duration-200 ease-in-out" key={index}>
+                    {item.icon}
+                  </a>
+                ))}
+              </div>
             </span>
-            <ul className="text-text-primary mt-2 flex flex-row gap-2 md:gap-5">
-              {quickStatsList.map((stat, index) => (
-                <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full" key={index}>
-                  {stat.icon}
-                  <span className="mt-1">{stat.message}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="flex flex-row gap-5 mt-5">
+              <button onClick={() => handleScroll("projects")} className="cursor-pointer text-sm md:text-md lg:text-lg bg-button-hero hover:bg-button-hero-hover active:bg-button-hero-hover border border-text-primary bg-text-thirdary text-[#ffffff] px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
+                <svg className="w-5 md:w-6 text-[#ffffff]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+                </svg>
+                Explore My Project
+              </button>
+              <button className="cursor-pointer text-sm md:text-md lg:text-lg hover:bg-button-hover active:bg-button-hover border border-text-text-primary text-text-primary px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
+                <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
+                </svg>
+                Download My CV
+              </button>
+            </div>
+            <div className="mb-10 md:mb-0 font-semibold">
+              <span className="text-sm md:text-md lg:text-lg mt-5 text-text-primary font-semibold flex flex-row items-center gap-2">
+                <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" strokeLinejoin="round" strokeWidth="2" d="M12.1429 11v9m0-9c-2.50543-.7107-3.19099-1.39543-6.13657-1.34968-.48057.00746-.86348.38718-.86348.84968v7.2884c0 .4824.41455.8682.91584.8617 2.77491-.0362 3.45995.6561 6.08421 1.3499m0-9c2.5053-.7107 3.1067-1.39542 6.0523-1.34968.4806.00746.9477.38718.9477.84968v7.2884c0 .4824-.4988.8682-1 .8617-2.775-.0362-3.3758.6561-6 1.3499m2-14c0 1.10457-.8955 2-2 2-1.1046 0-2-.89543-2-2s.8954-2 2-2c1.1045 0 2 .89543 2 2Z" />
+                </svg>
+                Quick Stats:
+              </span>
+              <ul className="text-text-primary mt-2 flex flex-row gap-2 md:gap-5">
+                {quickStatsList.map((stat, index) => (
+                  <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-105 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full" key={index}>
+                    {stat.icon}
+                    <span className="mt-1">{stat.message}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col items-center justify-center">
-          <div className="md:ml-auto flex flex-col items-center justify-center w-70 md:w-80 lg:w-90">
-            <Image src="/images/hero.jpg" alt="Hero Image" width={350} height={350} className="rounded-full neon floating" />
+        </FadeLeft>
+        <FadeRight>
+          <div className="flex flex-col items-center justify-center">
+            <div className="md:ml-auto flex flex-col items-center justify-center w-70 md:w-80 lg:w-90">
+              <Image src="/images/hero.jpg" alt="Hero Image" width={350} height={350} className="rounded-full neon floating" />
+            </div>
           </div>
-        </div>
+        </FadeRight>
       </section>
     </>
   )

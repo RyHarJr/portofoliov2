@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from "react"
+import FadeDown from "./animations/FadeDown"
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
@@ -65,7 +66,7 @@ export default function Header() {
   }
 
   return (
-    <>
+    <FadeDown>
       <div className="relative flex items-center justify-between py-5 bg-foreground shadow-md">
         <div className="flex flex-row items-center mx-5 md:mx-10 lg:mx-20 w-full">
           <svg className="w-6 md:w-7 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -118,7 +119,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-    </>
+    </FadeDown>
   )
 }
 
