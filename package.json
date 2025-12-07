@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env next start -p $PORT",
     "lint": "next lint"
   },
   "dependencies": {
+    "cross-env": "^10.1.0",
     "mongoosh": "^0.0.7",
     "motion": "^12.23.24",
     "next": "16.0.1",
