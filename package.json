@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "cross-env next start -p $PORT",
+    "start": "node start.js",
     "lint": "next lint"
   },
   "dependencies": {
+    "child_process": "^1.0.2",
     "cross-env": "^10.1.0",
+    "dotenv": "^17.2.3",
     "mongoosh": "^0.0.7",
     "motion": "^12.23.24",
     "next": "16.0.1",
