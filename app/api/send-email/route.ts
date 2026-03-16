@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server"
-import dbConnect from "@/lib/mongodb"
 import nodemailer from "nodemailer"
 
 interface RequestBody {
@@ -11,8 +10,6 @@ interface RequestBody {
 
 export async function POST(req: NextRequest) {
   try {
-    await dbConnect()
-
     const { name, timestamp, message, email }: RequestBody = await req.json()
 
     if (!name || !timestamp || !message || !email) {

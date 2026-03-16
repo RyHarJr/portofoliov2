@@ -39,7 +39,7 @@ export default function Hero() {
           setIndex((currentIndex + 1) % texts.length)
         }
       },
-      deleting ? 75 : 150
+      deleting ? 75 : 150,
     )
 
     return () => clearTimeout(timeout)
@@ -47,63 +47,70 @@ export default function Hero() {
 
   return (
     <>
-      <section id="home" className="cursor-default grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-5 md:px-10 lg:px-20 py-20">
+      <section id="home" className="cursor-default grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center px-6 md:px-12 lg:px-24 py-25 md:py-32 lg:py-40 overflow-hidden">
         <FadeLeft>
-          <div className="flex flex-col gap-3">
-            <h1 className="text-text-primary text-3xl md:text-4xl lg:text-5xl font-bold">Hi, I`m Ahmad Rizki Hartawan 👋</h1>
+          <div className="flex flex-col gap-2">
+            <div>
+              <h1 className="text-text-primary text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter leading-tight">
+                Hi, I&apos;m
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-text-primary to-text-secondary"> Rizki</span>
+              </h1>
+            </div>
+
             <div className="relative">
-              <span className={`text-text-primary text-2xl font-semibold`}>{`${texts[index].substring(0, subIndex)}`}</span>
-              <span className="animate-cursor text-text-secondary text-2xl">|</span>
+              <span className={`text-text-primary text-xl md:text-2xl lg:text-3xl font-bold tracking-tight`}>{`${texts[index].substring(0, subIndex)}`}</span>
+              <span className="animate-cursor text-text-secondary text-2xl lg:text-3xl font-light">|</span>
             </div>
-            <div className="flex flex-row">
-              <p className="text-text-secondary">Halo! Saya suka ngoding dan bereksperimen dengan ide-ide baru. Bagi saya, setiap baris kode adalah cara untuk menghadirkan sesuatu yang bermanfaat dan keren di dunia digital.</p>
+
+            <div className="max-w-xl mt-4">
+              <p className="text-text-secondary text-base md:text-lg leading-relaxed font-medium">Halo! Saya suka ngoding dan bereksperimen dengan ide-ide baru. Bagi saya, setiap baris kode adalah cara untuk menghadirkan sesuatu yang bermanfaat dan keren di dunia digital.</p>
             </div>
-            <span className="text-text-secondary flex flex-row">
-              <span className="mr-5">Follow me on:</span>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+              <button onClick={() => handleScroll("projects")} className="cursor-pointer text-sm md:text-base font-bold bg-text-primary text-background px-8 py-4 rounded-xl flex flex-row items-center justify-center gap-3 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.1)] transition-all duration-300 ease-out">
+                Explore Work
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
+                </svg>
+              </button>
+              <a href="/cv.pdf" download className="cursor-pointer text-sm md:text-base font-bold border-2 border-text-secondary/20 hover:border-text-primary text-text-primary px-8 py-4 rounded-xl flex flex-row items-center justify-center gap-3 hover:-translate-y-1.5 hover:scale-[1.02] hover:bg-thirdary/40 transition-all duration-300 ease-out bg-background/50 backdrop-blur-sm shadow-[0_4px_10px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_10px_rgba(255,255,255,0.02)]">
+                Download CV
+                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
+                </svg>
+              </a>
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-text-secondary/10">
+              <span className="text-xs uppercase tracking-widest font-bold text-text-secondary mb-4 block">Connect</span>
               <div className="flex flex-row gap-4">
                 {socialMediaList.map((item, index) => (
-                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="bg-button-hover p-2 rounded-full active:shadow-lg active:scale-95 hover:shadow-lg hover:scale-105 hover:bg-button-hero active:bg-button-hero text-text-primary transition-transform duration-200 ease-in-out" key={index}>
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="p-3 border border-text-secondary/20 rounded-xl hover:border-text-primary hover:bg-text-primary hover:text-background text-text-primary transition-all duration-300" key={index}>
                     {item.icon}
                   </a>
                 ))}
               </div>
-            </span>
-            <div className="flex flex-row gap-5 mt-5">
-              <button onClick={() => handleScroll("projects")} className="cursor-pointer text-sm md:text-md lg:text-lg bg-button-hero hover:bg-button-hero-hover active:bg-button-hero-hover border border-text-primary bg-text-thirdary text-[#ffffff] px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
-                <svg className="w-5 md:w-6 text-[#ffffff]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
-                </svg>
-                Explore My Project
-              </button>
-              <button className="cursor-pointer text-sm md:text-md lg:text-lg hover:bg-button-hover active:bg-button-hover border border-text-text-primary text-text-primary px-5 py-3 rounded-md flex flex-row items-center gap-2 hover:scale-103 active:scale-103 transition-transform duration-200 ease-in-out">
-                <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 13V4M7 14H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2m-1-5-4 5-4-5m9 8h.01" />
-                </svg>
-                Download My CV
-              </button>
-            </div>
-            <div className="mb-10 md:mb-0 font-semibold">
-              <span className="text-sm md:text-md lg:text-lg mt-5 text-text-primary font-semibold flex flex-row items-center gap-2">
-                <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" strokeLinejoin="round" strokeWidth="2" d="M12.1429 11v9m0-9c-2.50543-.7107-3.19099-1.39543-6.13657-1.34968-.48057.00746-.86348.38718-.86348.84968v7.2884c0 .4824.41455.8682.91584.8617 2.77491-.0362 3.45995.6561 6.08421 1.3499m0-9c2.5053-.7107 3.1067-1.39542 6.0523-1.34968.4806.00746.9477.38718.9477.84968v7.2884c0 .4824-.4988.8682-1 .8617-2.775-.0362-3.3758.6561-6 1.3499m2-14c0 1.10457-.8955 2-2 2-1.1046 0-2-.89543-2-2s.8954-2 2-2c1.1045 0 2 .89543 2 2Z" />
-                </svg>
-                Quick Stats:
-              </span>
-              <ul className="text-text-primary mt-2 flex flex-row gap-2 md:gap-5">
-                {quickStatsList.map((stat, index) => (
-                  <li className="cursor-pointer items-center flex flex-col md:flex-row shadow-md hover:shadow-lg active:shadow-lg active:scale-95 hover:scale-105 text-xs md:text-sm style-none text-center bg-quick-stats-bg p-3 rounded-full" key={index}>
-                    {stat.icon}
-                    <span className="mt-1">{stat.message}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </FadeLeft>
+
         <FadeRight>
-          <div className="flex flex-col items-center justify-center">
-            <div className="md:ml-auto flex flex-col items-center justify-center w-70 md:w-80 lg:w-90">
-              <Image src="/images/hero.jpg" alt="Hero Image" width={350} height={350} className="rounded-full neon floating" />
+          <div className="flex flex-col items-center justify-center relative mt-12 md:mt-0">
+            {/* Subtle aesthetic backdrop instead of neon glow */}
+            <div className="absolute inset-0 bg-linear-to-tr from-thirdary to-background rounded-full scale-110 opacity-50 blur-2xl"></div>
+
+            <div className="relative z-10 p-2 bg-background border border-text-secondary/10 rounded-full shadow-2xl">
+              <Image src="/images/hero.jpg" alt="Ahmad Rizki Hartawan" width={400} height={400} className="rounded-full object-cover aspect-square floating grayscale hover:grayscale-0 transition-all duration-700" priority />
+            </div>
+
+            {/* Quick Stats redesigned as floating minimal badges */}
+            <div className="absolute -bottom-10 md:-bottom-12 -left-4 md:-left-12 z-20 flex flex-col gap-3">
+              {quickStatsList.map((stat, index) => (
+                <div className={`floating flex items-center gap-3 bg-background/90 backdrop-blur-md border border-text-secondary/10 p-3 pr-5 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform duration-300 animate-in fade-in slide-in-from-bottom-5`} style={{ animationDelay: `${index * 150}ms` }} key={index}>
+                  <div className="bg-text-primary text-background p-2 rounded-xl">{stat.icon}</div>
+                  <span className="text-xs md:text-sm font-semibold text-text-primary whitespace-nowrap">{stat.message}</span>
+                </div>
+              ))}
             </div>
           </div>
         </FadeRight>
@@ -143,24 +150,24 @@ const quickStatsList = [
   {
     message: "2+ Years of Experience",
     icon: (
-      <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-        <path fillRule="evenodd" d="M12 2c-.791 0-1.55.314-2.11.874l-.893.893a.985.985 0 0 1-.696.288H7.04A2.984 2.984 0 0 0 4.055 7.04v1.262a.986.986 0 0 1-.288.696l-.893.893a2.984 2.984 0 0 0 0 4.22l.893.893a.985.985 0 0 1 .288.696v1.262a2.984 2.984 0 0 0 2.984 2.984h1.262c.261 0 .512.104.696.288l.893.893a2.984 2.984 0 0 0 4.22 0l.893-.893a.985.985 0 0 1 .696-.288h1.262a2.984 2.984 0 0 0 2.984-2.984V15.7c0-.261.104-.512.288-.696l.893-.893a2.984 2.984 0 0 0 0-4.22l-.893-.893a.985.985 0 0 1-.288-.696V7.04a2.984 2.984 0 0 0-2.984-2.984h-1.262a.985.985 0 0 1-.696-.288l-.893-.893A2.984 2.984 0 0 0 12 2Zm3.683 7.73a1 1 0 1 0-1.414-1.413l-4.253 4.253-1.277-1.277a1 1 0 0 0-1.415 1.414l1.985 1.984a1 1 0 0 0 1.414 0l4.96-4.96Z" clipRule="evenodd" />
+      <svg className="w-5 md:w-6 text-text-background" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     ),
   },
   {
     message: "Javascript Main Language",
     icon: (
-      <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 8v8m0-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8-8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0a4 4 0 0 1-4 4h-1a3 3 0 0 0-3 3" />
+      <svg className="w-5 md:w-6 text-text-background" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m8 8-4 4 4 4m8 0 4-4-4-4m-2-3-4 14" />
       </svg>
     ),
   },
   {
     message: "Fullstack developer",
     icon: (
-      <svg className="w-5 md:w-6 text-text-primary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.122 17.645a7.185 7.185 0 0 1-2.656 2.495 7.06 7.06 0 0 1-3.52.853 6.617 6.617 0 0 1-3.306-.718 6.73 6.73 0 0 1-2.54-2.266c-2.672-4.57.287-8.846.887-9.668A4.448 4.448 0 0 0 8.07 6.31 4.49 4.49 0 0 0 7.997 4c1.284.965 6.43 3.258 5.525 10.631 1.496-1.136 2.7-3.046 2.846-6.216 1.43 1.061 3.985 5.462 1.754 9.23Z" />
+      <svg className="w-5 md:w-6 text-text-background" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5M5 12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2M5 12h14m-7 4v3m-4 0h8" />
       </svg>
     ),
   },
