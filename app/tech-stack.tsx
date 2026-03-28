@@ -1,5 +1,4 @@
 "use client"
-import { motion } from "framer-motion"
 import FadeDown from "@/components/animations/FadeDown"
 import FadeUp from "@/components/animations/FadeUp"
 

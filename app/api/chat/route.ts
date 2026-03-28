@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 
+interface HistoryEntry {
+  role: "system" | "user" | "assistant"
+  content: string
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { text, name } = await req.json()
+    const { text, history = [] }: { text: string; history: HistoryEntry[] } = await req.json()
 
     if (!text) {
       return NextResponse.json({ success: false, message: "Pesan tidak boleh kosong" }, { status: 400 })
@@ -14,20 +19,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: "Konfigurasi API AI tidak ditemukan." }, { status: 500 })
     }
 
-    const url = new URL("https://api.ryhar.my.id/ai/qwen-ai")
-    url.searchParams.append("text", text)
-    url.searchParams.append("name", name || "Guest")
-    url.searchParams.append("apikey", apiKey)
-
-    const response = await fetch(url.toString(), {
-      method: 'GET',
+    const response = await fetch("https://api.ryhar.my.id/ai/qwen-ai", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-      }
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "x-apikey": apiKey,
+      },
+      body: JSON.stringify({ text, history }),
     })
 
     if (!response.ok) {
-      throw new Error(`API AI Error: ${response.status}`)
+      const errText = await response.text()
+      console.error(`API AI Error: ${response.status}`, errText)
+      throw new Error(`API AI Error: ${response.status} - ${errText}`)
     }
 
     const data = await response.json()

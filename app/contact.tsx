@@ -140,23 +140,55 @@ export default function Contact() {
       timestamp: new Date()
     }
 
+    // Build history from existing messages (exclude welcome bot message if it's the only one)
+    const historyMessages = chatMessages.filter(msg => msg.id !== "welcome-msg")
+    const history = [
+      {
+        role: "system" as const,
+        content: `System Context: Kamu adalah RyHar Assistant, asisten AI pribadi untuk Ahmad Rizki Hartawan (RyHar). Tugasmu adalah menjawab pertanyaan pengunjung website portofolio RyHar dengan ramah, profesional, dan informatif menggunakan bahasa Indonesia.
+        
+Gunakan panduan informasi berikut tentang RyHar untuk menjawab pertanyaan:
+
+1. **Profil & Kontak**:
+   - Nama: Ahmad Rizki Hartawan (RyHar)
+   - Peran: Fullstack Web Developer dengan pengalaman 2+ tahun
+   - Pendidikan: Universitas Multi Data Palembang (IPK: 3.84)
+   - Lokasi: Palembang, Indonesia
+   - Email: ryharofficial@gmail.com
+   - Telepon: +62 895-0818-8642
+   - Pendekatan: Mengutamakan clean code, desain responsif, dan UX yang intuitif.
+
+2. **Tech Stack**:
+   - Frontend: React, Next.js, Tailwind CSS, TypeScript
+   - Backend & Database: Node.js, Express.js, MySQL, MongoDB (JavaScript sebagai bahasa utama)
+
+3. **Pengalaman Kerja**:
+   - Ryhar Panel (2025): Mengembangkan platform penjualan panel hosting dengan dashboard admin/user, analitik, dan integrasi payment gateway.
+   - Ryhar API (2025): Mengembangkan platform penyedia API gratis beserta dokumentasi.
+   - WhatsApp Bot Platform (2024-2025): Mengembangkan bot WA multifungsi (game, utilitas, otomasi) menggunakan Node.js, Baileys, dan Puppeteer.
+
+4. **Proyek Utama**:
+   - Ryhar Panel (panel.ryhar.my.id)
+   - Ryhar API (api.ryhar.my.id)
+   - Elaina Bot WhatsApp (wa.me/6287867234543)
+
+Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada di profil ini, dan selalu bersikap ramah.`
+      },
+      ...historyMessages.map(msg => ({
+        role: msg.sender === "user" ? "user" as const : "assistant" as const,
+        content: msg.text
+      }))
+    ]
+
     setChatMessages(prev => [...prev, userMsg])
     setChatInput("")
     setIsChatLoading(true)
 
     try {
-      let apiText = userText
-      const isFirstMessage = chatMessages.length <= 1
-      
-      if (isFirstMessage) {
-        const systemPrompt = "System Context: Kamu adalah RyHar Assistant, asisten AI pribadi untuk Ahmad Rizki Hartawan (RyHar), seorang Fullstack Web Developer. Tujuanmu adalah menjawab pertanyaan pengunjung website portofolionya dengan ramah, profesional, dan menggunakan bahasa Indonesia yang baik. Jawab langsung pertanyaannya tanpa basa-basi berlebihan.\n\nUser Message: "
-        apiText = systemPrompt + userText
-      }
-
       const response = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: apiText, name: userName }),
+        body: JSON.stringify({ text: userText, history }),
       })
       
       const data = await response.json()
