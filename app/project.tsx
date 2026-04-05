@@ -141,8 +141,8 @@ const projectList = [
     createdAt: "2026-01-10",
     features: ["Admin Dashboard", "User Dashboard", "Analytics Monitoring", "Payment Gateway Integration", "User Management"],
     tech: ["Next.js", "Tailwind CSS", "Node.js", "Express.js", "MySQL"],
-    githubUrl: "https://github.com/RyHarJr/ryhar-panel",
-    liveDemoUrl: "https://panel.ryhar.my.id",
+    githubUrl: "https://github.com/RyHarJr/ryhar-panelv2-fe",
+    liveDemoUrl: "https://ryhar-panel.my.id",
   },
   {
     index: 1,
@@ -152,8 +152,8 @@ const projectList = [
     createdAt: "2025-08-05",
     features: ["API Documentation", "User Authentication", "API Endpoint Access", "Developer Dashboard", "Request Handling"],
     tech: ["Next.js", "Tailwind CSS", "Express.js", "Node.js", "MySQL", "REST API"],
-    githubUrl: "https://github.com/RyHarJr/rest-apiv2",
-    liveDemoUrl: "https://api.ryhar.my.id",
+    githubUrl: "https://github.com/RyHarJr/rest-apiv3-fe",
+    liveDemoUrl: "https://dash.ryhar.my.id",
   },
   {
     index: 2,
@@ -164,6 +164,6 @@ const projectList = [
     features: ["Games System", "Utility Tools", "API Integration", "Media Generation (Canvas)", "Automation Commands"],
     tech: ["Node.js", "Baileys", "Puppeteer", "Express.js", "Canvas", "JavaScript"],
     githubUrl: "https://github.com/RyHarJr/Elaina",
-    liveDemoUrl: "https://wa.me/6287867234543",
+    liveDemoUrl: "https://wa.me/6289508188642",
   },
 ]

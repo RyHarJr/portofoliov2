@@ -77,7 +77,7 @@ export default function Experience() {
             return (
               <motion.div key={exp.id} initial={{ opacity: 0, y: 40, scale: 0.95, filter: "blur(5px)" }} whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }} className={`relative flex flex-col md:flex-row items-center justify-between w-full ${isEven ? "md:flex-row-reverse" : ""}`}>
                 {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 top-0 md:top-1/2 w-4 h-4 rounded-full bg-background border-4 border-text-primary z-10 md:-translate-x-1/2 md:-translate-y-1/2 mt-1 md:mt-0 shadow-[0_0_0_4px_var(--background)]"></div>
+                <div className="absolute -left-[7px] md:left-1/2 top-0 md:top-1/2 w-4 h-4 rounded-full bg-background border-4 border-text-primary z-10 md:-translate-x-1/2 md:-translate-y-1/2 mt-1 md:mt-0 shadow-[0_0_0_4px_var(--background)]"></div>
 
                 {/* Content Card */}
                 <div className={`w-full md:w-[45%] pl-10 md:pl-0 ${isEven ? "md:pl-10 text-left" : "md:pr-10 md:text-right"}`}>
