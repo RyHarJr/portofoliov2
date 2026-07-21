@@ -25,8 +25,18 @@ export default function TechStack() {
               {category.technologies.map((tech, techIdx) => (
                 <FadeUp key={techIdx} delay={idx * 0.1 + techIdx * 0.05}>
                   <div className="group flex flex-col items-center justify-center p-6 bg-thirdary/20 hover:bg-thirdary/50 border border-text-secondary/10 hover:border-text-primary/50 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full">
-                    <div className="w-12 h-12 mb-4 text-text-secondary group-hover:text-text-primary transition-colors flex items-center justify-center pointer-events-none">{tech.svg.startsWith("<") ? <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: tech.svg }} /> : <img src={tech.svg} alt={tech.name} className="w-full h-full tech-icon-img" />}</div>
-                    <span className="text-sm font-bold text-text-primary">{tech.name}</span>
+                    <div className="w-12 h-12 mb-4 transition-colors flex items-center justify-center pointer-events-none">
+                      {tech.svg ? (
+                        tech.svg.startsWith("<") ? (
+                          <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: tech.svg }} />
+                        ) : (
+                          <img src={tech.svg} alt={tech.name} className="w-full h-full tech-icon-img" />
+                        )
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center font-bold text-xl bg-thirdary/50 rounded-lg">{tech.name.charAt(0)}</div>
+                      )}
+                    </div>
+                    <span className="text-sm font-bold text-text-primary text-center">{tech.name}</span>
                   </div>
                 </FadeUp>
               ))}
@@ -40,47 +50,48 @@ export default function TechStack() {
 
 const techCategories = [
   {
-    title: "Frontend Languages & Frameworks",
-    description: "The tools I use to build beautiful, responsive, and interactive user interfaces.",
+    title: "Frontend",
+    description: "Frameworks and libraries for building interactive user interfaces.",
     technologies: [
-      {
-        name: "React",
-        svg: "./icons/react.svg",
-      },
-      {
-        name: "Next.js",
-        svg: "./icons/nextjs.svg",
-      },
-      {
-        name: "Tailwind CSS",
-        svg: "./icons/tailwindcss.svg",
-      },
-      {
-        name: "TypeScript",
-        svg: "./icons/typescript.svg",
-      },
+      { name: "React.js", svg: "./icons/react.svg" },
+      { name: "Next.js", svg: "./icons/nextjs.svg" },
+      { name: "Tailwind CSS", svg: "./icons/tailwindcss.svg" },
+      { name: "HTML5", svg: "./icons/html.svg" },
+      { name: "CSS3", svg: "./icons/css.svg" },
+      { name: "Framer Motion", svg: "./icons/framermotion.svg" },
     ],
   },
   {
-    title: "Backend Core",
-    description: "The foundations of the APIs and services I build for web apps and bots.",
+    title: "Backend",
+    description: "Server-side technologies and frameworks.",
     technologies: [
-      {
-        name: "Node.js",
-        svg: "./icons/nodejs.svg",
-      },
-      {
-        name: "Express.js",
-        svg: "./icons/express.svg",
-      },
-      {
-        name: "MySQL",
-        svg: "./icons/mysql.svg",
-      },
-      {
-        name: "MongoDB",
-        svg: "./icons/mongodb.svg",
-      },
+      { name: "Node.js", svg: "./icons/nodejs.svg" },
+      { name: "Express.js", svg: "./icons/express.svg" },
+      { name: "Go (Golang)", svg: "./icons/go.svg" },
+      { name: "Fiber", svg: "./icons/fiber.svg" },
+      { name: "Laravel", svg: "./icons/laravel.svg" },
+    ],
+  },
+  {
+    title: "Databases & ORM",
+    description: "Database management systems and Object-Relational Mappers.",
+    technologies: [
+      { name: "MySQL", svg: "./icons/mysql.svg" },
+      { name: "PostgreSQL", svg: "./icons/postgresql.svg" },
+      { name: "MongoDB", svg: "./icons/mongodb.svg" },
+      { name: "Prisma ORM", svg: "./icons/prisma.svg" },
+    ],
+  },
+  {
+    title: "Tools & Infrastructure",
+    description: "Development tools, version control, and deployment.",
+    technologies: [
+      { name: "Git", svg: "./icons/git.svg" },
+      { name: "GitHub", svg: "./icons/github.svg" },
+      { name: "Docker", svg: "./icons/docker.svg" },
+      { name: "Linux", svg: "./icons/linux.svg" },
+      { name: "Nginx", svg: "./icons/nginx.svg" },
+      { name: "Postman", svg: "./icons/postman.svg" },
     ],
   },
 ]

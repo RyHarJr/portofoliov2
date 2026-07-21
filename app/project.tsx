@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import FadeDown from "@/components/animations/FadeDown"
 import FadeUp from "@/components/animations/FadeUp"
+import GlareHover from "@/components/GlareHover"
 
 export default function Project() {
   const [isOpen, setIsOpen] = useState<number | null>(null)
@@ -35,20 +36,45 @@ export default function Project() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-12">
           {projectList.map((project, index) => (
             <FadeUp key={index}>
-              <div className="group flex flex-col h-full bg-background border border-text-secondary/20 hover:border-text-primary rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgba(255,255,255,0.02)]">
-                <div className="relative overflow-hidden aspect-[4/3]">
-                  <Image src={project.imagePath} alt={project.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105" />
+              <GlareHover className="group flex flex-col h-full bg-background border border-text-secondary/20 hover:border-text-primary/50 rounded-xl overflow-hidden transition-all duration-500 shadow-sm hover:shadow-2xl">
+                <div className="relative overflow-hidden aspect-[16/10] bg-text-secondary/5 border-b border-text-secondary/10">
+                  <Image src={project.imagePath} alt={project.title} fill className="object-cover transition-all duration-700 group-hover:scale-105" />
+
+                  {/* Tech Stack Overlay */}
+                  <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-[-10px] group-hover:translate-y-0">
+                    {project.tech.slice(0, 3).map((tech, i) => (
+                      <span key={i} className="text-[10px] font-bold bg-background/90 text-text-primary px-2 py-1 rounded backdrop-blur-md border border-text-secondary/20 uppercase tracking-widest shadow-sm">
+                        {tech}
+                      </span>
+                    ))}
+                    {project.tech.length > 3 && <span className="text-[10px] font-bold bg-background/90 text-text-primary px-2 py-1 rounded backdrop-blur-md border border-text-secondary/20 uppercase tracking-widest shadow-sm">+{project.tech.length - 3}</span>}
+                  </div>
                 </div>
 
-                <div className="p-6 md:p-8 flex flex-col flex-grow">
-                  <h4 className="text-2xl font-bold text-text-primary mb-3 tracking-tight">{project.title}</h4>
-                  <p className="text-base text-text-secondary font-medium leading-relaxed mb-8 flex-grow">{project.shortDescription}</p>
+                <div className="p-6 md:p-8 flex flex-col flex-grow relative">
+                  {/* Numbering */}
+                  <div className="absolute top-0 right-6 -translate-y-1/2 bg-background border border-text-secondary/20 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-text-secondary shadow-sm">{String(index + 1).padStart(2, "0")}</div>
 
-                  <button className="w-full text-center font-bold text-sm tracking-widest uppercase border border-text-primary text-text-primary hover:bg-text-primary hover:text-background py-4 rounded-xl transition-colors duration-300 flex justify-center items-center gap-2" onClick={() => setIsOpen(project.index)}>
-                    View Details
-                  </button>
+                  <div className="flex justify-between items-start mb-4">
+                    <h4 className="text-2xl font-black text-text-primary tracking-tight leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-text-primary group-hover:to-text-secondary transition-all duration-500">{project.title}</h4>
+                  </div>
+
+                  <p className="text-sm text-text-secondary font-medium leading-relaxed mb-8 flex-grow line-clamp-3">{project.shortDescription}</p>
+
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-text-secondary/10">
+                    <button className="text-xs font-bold tracking-[0.2em] uppercase text-text-primary flex items-center gap-3 group/btn" onClick={() => setIsOpen(project.index)}>
+                      View Details
+                      <span className="w-8 h-[2px] bg-text-primary group-hover/btn:w-12 transition-all duration-300"></span>
+                    </button>
+
+                    <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="p-2 border border-text-secondary/20 rounded-full text-text-secondary hover:text-background hover:bg-text-primary hover:border-text-primary transition-all duration-300">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
-              </div>
+              </GlareHover>
             </FadeUp>
           ))}
         </div>
@@ -135,35 +161,35 @@ export default function Project() {
 const projectList = [
   {
     index: 0,
-    imagePath: "/images/project1.png",
-    title: "Ryhar Panel",
-    shortDescription: "Platform web untuk menjual panel hosting dengan sistem dashboard terpisah untuk admin dan user serta integrasi payment gateway.",
-    createdAt: "2026-01-10",
-    features: ["Admin Dashboard", "User Dashboard", "Analytics Monitoring", "Payment Gateway Integration", "User Management"],
-    tech: ["Next.js", "Tailwind CSS", "Node.js", "Express.js", "MySQL"],
-    githubUrl: "https://github.com/RyHarJr/ryhar-panelv2-fe",
-    liveDemoUrl: "https://ryhar-panel.my.id",
+    imagePath: "/images/jadibotwa.png",
+    title: "JadibotWA",
+    shortDescription: "Architected a code-free WhatsApp automation platform featuring live bot logs via WebSockets for real-time data, status monitoring, and scalable REST APIs.",
+    createdAt: "2025-05-10",
+    features: ["Live Bot Logs via WebSockets", "High-performance Microservices", "Multi-device Session Management", "AI-powered Chat Workflows"],
+    tech: ["Go (Fiber)", "PostgreSQL", "WhatsMeow", "Next.js", "TypeScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/RyHarJr",
+    liveDemoUrl: "https://jadibotwa.xyz",
   },
   {
     index: 1,
-    imagePath: "/images/project2.png",
-    title: "Ryhar API",
-    shortDescription: "Platform Rest API yang menyediakan berbagai endpoint gratis dan mudah digunakan untuk developer, lengkap dengan dokumentasi API yang jelas.",
+    imagePath: "/images/ryharpanel.png",
+    title: "RyHar Panel",
+    shortDescription: "Built a modern landing page and management platform for a Pterodactyl hosting service, focused on fast, responsive, and conversion-driven user experience.",
     createdAt: "2025-08-05",
-    features: ["API Documentation", "User Authentication", "API Endpoint Access", "Developer Dashboard", "Request Handling"],
-    tech: ["Next.js", "Tailwind CSS", "Express.js", "Node.js", "MySQL", "REST API"],
-    githubUrl: "https://github.com/RyHarJr/rest-apiv3-fe",
-    liveDemoUrl: "https://dash.ryhar.my.id",
+    features: ["Pterodactyl Integration", "Automated Transaction Processing", "Payment Gateway", "SEO Optimization"],
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Express.js", "Prisma ORM", "MySQL"],
+    githubUrl: "https://github.com/RyHarJr",
+    liveDemoUrl: "https://ryhar-panel.my.id",
   },
   {
     index: 2,
-    imagePath: "/images/project3.png",
-    title: "Elaina Bot (WhatsApp)",
-    shortDescription: "Multifunctional WhatsApp bot with games, tools, and automation features designed to enhance user interaction directly within WhatsApp.",
-    createdAt: "2024-12-15",
-    features: ["Games System", "Utility Tools", "API Integration", "Media Generation (Canvas)", "Automation Commands"],
-    tech: ["Node.js", "Baileys", "Puppeteer", "Express.js", "Canvas", "JavaScript"],
-    githubUrl: "https://github.com/RyHarJr/Elaina",
-    liveDemoUrl: "https://wa.me/6289508188642",
+    imagePath: "/images/hero.jpg",
+    title: "RyHar Portfolio",
+    shortDescription: "Developed a personal portfolio website with a modern, responsive design focused on user experience to showcase profile, skills, and completed projects.",
+    createdAt: "2026-07-20",
+    features: ["Interactive Animations", "Responsive Design", "Modern UI/UX"],
+    tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    githubUrl: "https://github.com/RyHarJr/portofoliov2",
+    liveDemoUrl: "https://ryhar.my.id",
   },
 ]

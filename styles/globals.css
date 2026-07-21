@@ -151,16 +151,7 @@ html {
   background: #52525b;
 }
 
-/* Tech stack SVG icon filter: monochrome by default, original color on hover */
+/* Tech stack SVG icon filter: always original color */
 .tech-icon-img {
-  filter: brightness(0);
-  transition: filter 0.3s ease;
-}
-
-.dark .tech-icon-img {
-  filter: brightness(0) invert(1);
-}
-
-.group:hover .tech-icon-img {
-  filter: none;
+  transition: transform 0.3s ease;
 }
