@@ -9,9 +9,9 @@ export default function About() {
 
   return (
     <>
-      <section id="about" className="py-24 md:py-32 cursor-default bg-background overflow-hidden border-t border-text-secondary/10">
+      <section id="about" className="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background overflow-hidden border-t border-text-secondary/10">
         <FadeDown>
-          <div className="max-w-3xl mx-auto text-center px-6 mb-16 md:mb-24">
+          <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full text-left">
             <h2 className="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">Discover</h2>
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter">About Me</h3>
           </div>

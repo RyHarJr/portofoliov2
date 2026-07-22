@@ -72,51 +72,42 @@ export default function Experience() {
   })
 
   return (
-    <section id="experience" className="py-24 md:py-32 cursor-default bg-background relative border-t border-text-secondary/10" ref={containerRef}>
+    <section id="experience" className="w-full max-w-7xl mx-auto py-24 md:py-32 cursor-default bg-background relative border-t border-text-secondary/10" ref={containerRef}>
       <FadeDown>
-        <div className="max-w-3xl mx-auto text-center px-6 mb-20 md:mb-28">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16 md:mb-24 w-full text-left">
           <h2 className="text-sm font-bold tracking-[0.2em] text-text-secondary uppercase mb-4">Career Path</h2>
           <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tighter">Work Experience</h3>
         </div>
       </FadeDown>
 
-      <div className="max-w-4xl mx-auto px-6 relative">
-        {/* The Animated Vertical Timeline Line */}
-        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-text-secondary/20 md:-translate-x-1/2 rounded-full overflow-hidden">
-          <motion.div style={{ scaleY, originY: 0 }} className="absolute top-0 left-0 w-full h-full bg-text-primary rounded-full" />
-        </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative group/list flex flex-col">
+        {experiences.map((exp, index) => {
+          return (
+            <motion.div key={exp.id} initial={{ opacity: 0, y: 40, filter: "blur(5px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, delay: index * 0.1 }} className="group/item relative grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 p-6 md:p-8 -mx-6 md:-mx-8 rounded-2xl transition-all duration-500 hover:!opacity-100 hover:!blur-none group-hover/list:opacity-40 group-hover/list:blur-[2px] hover:bg-text-secondary/5 hover:shadow-lg border border-transparent hover:border-text-secondary/10">
+              
+              {/* Left Column: Date */}
+              <div className="md:col-span-1 pt-1 md:pt-2">
+                <span className="text-xs font-bold tracking-widest text-text-secondary uppercase">{exp.date}</span>
+              </div>
 
-        {/* Experience Items */}
-        <div className="space-y-16 md:space-y-24">
-          {experiences.map((exp, index) => {
-            const isEven = index % 2 === 0
-            return (
-              <motion.div key={exp.id} initial={{ opacity: 0, y: 40, scale: 0.95, filter: "blur(5px)" }} whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8, type: "spring", stiffness: 100, damping: 20 }} className={`relative flex flex-col md:flex-row items-center justify-between w-full ${isEven ? "md:flex-row-reverse" : ""}`}>
-                {/* Timeline Dot */}
-                <div className="absolute -left-[7px] md:left-1/2 top-0 md:top-1/2 w-4 h-4 rounded-full bg-background border-4 border-text-primary z-10 md:-translate-x-1/2 md:-translate-y-1/2 mt-1 md:mt-0 shadow-[0_0_0_4px_var(--background)]"></div>
+              {/* Right Column: Details */}
+              <div className="md:col-span-3 flex flex-col">
+                <h4 className="text-2xl font-bold text-text-primary tracking-tight mb-1 group-hover/item:text-text-primary transition-colors">{exp.role}</h4>
+                <h5 className="text-sm font-bold text-text-secondary tracking-wide uppercase mb-6">{exp.company}</h5>
 
-                {/* Content Card */}
-                <div className={`w-full md:w-[45%] pl-10 md:pl-0 ${isEven ? "md:pl-10 text-left" : "md:pr-10 md:text-right"}`}>
-                  <div className="bg-background border border-text-secondary/20 p-8 rounded-2xl hover:border-text-primary transition-colors duration-300 shadow-sm group">
-                    <span className="text-xs font-bold tracking-widest text-text-secondary uppercase block mb-3">{exp.date}</span>
-                    <h4 className="text-2xl font-bold text-text-primary tracking-tight mb-1">{exp.role}</h4>
-                    <h5 className="text-sm font-bold text-text-secondary tracking-wide uppercase mb-6">{exp.company}</h5>
+                <p className="text-base text-text-secondary font-medium leading-relaxed mb-6">{exp.description}</p>
 
-                    <p className="text-base text-text-secondary font-medium leading-relaxed mb-6">{exp.description}</p>
-
-                    <div className={`flex flex-wrap gap-2 ${!isEven ? "md:justify-end" : ""}`}>
-                      {exp.skills.map((skill, i) => (
-                        <span key={i} className="text-xs font-bold bg-thirdary text-text-primary px-3 py-1.5 rounded-lg border border-text-secondary/10 uppercase tracking-wider">
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+                <div className="flex flex-wrap gap-2">
+                  {exp.skills.map((skill, i) => (
+                    <span key={i} className="text-xs font-bold bg-background md:bg-thirdary text-text-primary px-3 py-1.5 rounded-lg border border-text-secondary/10 uppercase tracking-wider group-hover/item:bg-background transition-colors duration-300">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-              </motion.div>
-            )
-          })}
-        </div>
+              </div>
+            </motion.div>
+          )
+        })}
       </div>
     </section>
   )

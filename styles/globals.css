@@ -155,3 +155,22 @@ html {
 .tech-icon-img {
   transition: transform 0.3s ease;
 }
+
+/* 🔄 Animasi Infinite Scroll */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 25s linear infinite;
+  width: max-content;
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
+}
