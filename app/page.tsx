@@ -1,4 +1,5 @@
 import Header from "@/components/Header"
+import Footer from "@/components/Footer"
 import Hero from "./hero"
 import About from "./about"
 import Experience from "./experience"
@@ -18,6 +19,7 @@ export default function Home() {
       <TechStack />
       <Project />
       <Contact />
+      <Footer />
     </>
   )
 }

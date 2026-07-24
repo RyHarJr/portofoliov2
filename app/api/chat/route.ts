@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
+export const runtime = 'edge'
+import OpenAI from 'openai'
 
 interface HistoryEntry {
   role: "system" | "user" | "assistant"
@@ -13,33 +15,56 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: "Pesan tidak boleh kosong" }, { status: 400 })
     }
 
-    const apiKey = process.env.API_KEY_AI
+    const apiKey = process.env.NVIDIA_APIKEY
     if (!apiKey) {
-      console.error("API_KEY_AI is missing in environment variables")
+      console.error("NVIDIA_APIKEY is missing in environment variables")
       return NextResponse.json({ success: false, message: "Konfigurasi API AI tidak ditemukan." }, { status: 500 })
     }
 
-    const response = await fetch("https://api.ryhar.my.id/ai/qwen-ai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "x-apikey": apiKey,
-      },
-      body: JSON.stringify({ text, history }),
+    const openai = new OpenAI({
+      apiKey: apiKey,
+      baseURL: 'https://integrate.api.nvidia.com/v1',
     })
 
-    if (!response.ok) {
-      const errText = await response.text()
-      console.error(`API AI Error: ${response.status}`, errText)
-      throw new Error(`API AI Error: ${response.status} - ${errText}`)
-    }
+    // Menggabungkan history dengan pesan terbaru dari user
+    const messages = [
+      ...history,
+      { role: "user", content: text }
+    ];
 
-    const data = await response.json()
+    const completion = await openai.chat.completions.create({
+      model: "thinkingmachines/inkling",
+      messages: messages as any,
+      temperature: 1,
+      top_p: 0.7,
+      max_tokens: 4096,
+      stream: true
+    })
 
-    const botReply = data.data || "Maaf, AI tidak memahami pesan tersebut."
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of completion) {
+            const content = chunk.choices?.[0]?.delta?.content || '';
+            
+            if (content) {
+              controller.enqueue(new TextEncoder().encode(content));
+            }
+          }
+          controller.close();
+        } catch (error) {
+          controller.error(error);
+        }
+      }
+    });
 
-    return NextResponse.json({ success: true, message: botReply }, { status: 200 })
+    return new Response(readable, {
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-cache, no-transform",
+        "Connection": "keep-alive"
+      }
+    });
 
   } catch (error) {
     console.error("Chat API Error:", error)

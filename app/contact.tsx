@@ -119,8 +119,12 @@ Gunakan panduan informasi berikut tentang RyHar untuk menjawab pertanyaan:
    - Peran: Fullstack Web Developer dengan pengalaman 2+ tahun
    - Pendidikan: Universitas Multi Data Palembang (IPK: 3.84)
    - Lokasi: Palembang, Indonesia
-   - Email: ryharofficial@gmail.com
-   - Telepon: +62 895-0818-8642
+   - Email: a.rizkihartawan04@gmail.com
+   - WhatsApp/Telepon: +62 895-0818-8642 (wa.me/6289508188642)
+   - LinkedIn: linkedin.com/in/rizkihartawan/
+   - Instagram: @rizki_hr4 (instagram.com/rizki_hr4)
+   - TikTok: @ryhar.dev (tiktok.com/@ryhar.dev)
+   - GitHub: github.com/RyHarJr
    - Pendekatan: Mengutamakan clean code, desain responsif, dan UX yang intuitif.
 
 2. **Tech Stack**:
@@ -128,14 +132,15 @@ Gunakan panduan informasi berikut tentang RyHar untuk menjawab pertanyaan:
    - Backend & Database: Node.js, Express.js, MySQL, MongoDB (JavaScript sebagai bahasa utama)
 
 3. **Pengalaman Kerja**:
-   - Ryhar Panel (2025): Mengembangkan platform penjualan panel hosting dengan dashboard admin/user, analitik, dan integrasi payment gateway.
-   - Ryhar API (2025): Mengembangkan platform penyedia API gratis beserta dokumentasi.
-   - WhatsApp Bot Platform (2024-2025): Mengembangkan bot WA multifungsi (game, utilitas, otomasi) menggunakan Node.js, Baileys, dan Puppeteer.
+   - Freelance Full Stack Web Developer (2025 - present): Mengembangkan web app kustom untuk berbagai klien.
+   - Litbang IT HIMSI (2026 - present): Operator IT dan Web Developer untuk organisasi.
+   - MDPTV (2024 - present): Fotografi, Videografi, & Web Developer.
+   - Radio Republik Indonesia (2024): Magang pemeliharaan infrastruktur broadcasting dan IT.
 
 4. **Proyek Utama**:
-   - Ryhar Panel (panel.ryhar.my.id)
-   - Ryhar API (api.ryhar.my.id)
-   - Elaina Bot WhatsApp (wa.me/6287867234543)
+   - JadibotWA (jadibotwa.xyz) - Platform automasi WhatsApp tanpa kode.
+   - RyHar Panel (ryhar-panel.my.id) - Landing page & platform manajemen layanan hosting.
+   - RyHar Portfolio (ryhar.my.id) - Website portofolio pribadi.
 
 Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada di profil ini, dan selalu bersikap ramah.`
       },
@@ -156,22 +161,51 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
         body: JSON.stringify({ text: userText, history }),
       })
       
-      const data = await response.json()
-      
-      const botMsg: ChatMessage = {
-        id: (Date.now() + 1).toString(),
-        sender: "bot",
-        text: data.success ? data.message : "Maaf, saya sedang mengalami gangguan sistem saat ini. Coba lagi nanti ya!",
-        timestamp: new Date()
+      if (!response.ok) {
+        throw new Error("Network response was not ok")
       }
-      
-      setChatMessages(prev => [...prev, botMsg])
+
+      // If response is JSON, it means an error occurred on the backend
+      const contentType = response.headers.get("Content-Type") || ""
+      if (contentType.includes("application/json")) {
+        const data = await response.json()
+        throw new Error(data.message || "Error dari server")
+      }
+
+      setIsChatLoading(false)
+
+      const botMsgId = (Date.now() + 1).toString()
+      setChatMessages(prev => [...prev, {
+        id: botMsgId,
+        sender: "bot",
+        text: "",
+        timestamp: new Date()
+      }])
+
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+      let botText = ""
+
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          
+          botText += decoder.decode(value, { stream: true })
+          setChatMessages(prev => 
+            prev.map(msg => 
+              msg.id === botMsgId ? { ...msg, text: botText } : msg
+            )
+          )
+        }
+      }
+
     } catch (error) {
       console.error("Chat error:", error)
       setChatMessages(prev => [...prev, {
         id: (Date.now() + 1).toString(),
         sender: "bot",
-        text: "Maaf, terjadi kesalahan koneksi.",
+        text: "Maaf, terjadi kesalahan koneksi atau server AI.",
         timestamp: new Date()
       }])
     } finally {
@@ -296,7 +330,7 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
               </a>
 
               {/* TikTok */}
-              <a href="https://tiktok.com/@ryhar_123" target="_blank" rel="noopener noreferrer" className="group bg-background border border-text-secondary/20 rounded-2xl p-4 sm:p-6 flex items-center justify-center sm:justify-between hover:border-text-primary hover:bg-text-primary/5 transition-all duration-300 shadow-sm hover:shadow-md aspect-square sm:aspect-auto">
+              <a href="https://tiktok.com/@ryhar.dev" target="_blank" rel="noopener noreferrer" className="group bg-background border border-text-secondary/20 rounded-2xl p-4 sm:p-6 flex items-center justify-center sm:justify-between hover:border-text-primary hover:bg-text-primary/5 transition-all duration-300 shadow-sm hover:shadow-md aspect-square sm:aspect-auto">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-text-secondary/10 flex items-center justify-center text-text-primary group-hover:text-text-primary group-hover:scale-110 transition-all duration-300">
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -305,7 +339,7 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
                   </div>
                   <div className="hidden sm:block">
                     <h4 className="text-lg font-bold text-text-primary">TikTok</h4>
-                    <p className="text-sm font-medium text-text-secondary">@ryhar_123</p>
+                    <p className="text-sm font-medium text-text-secondary">@ryhar.dev</p>
                   </div>
                 </div>
                 <svg className="hidden sm:block w-5 h-5 text-text-secondary group-hover:text-text-primary group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -329,14 +363,14 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
       </div>
 
       {/* Chatbot Modal Overlay */}
-      <div className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 lg:p-6 transition-all duration-500 ${isOpenChat ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+      <div className={`fixed inset-0 z-50 flex items-center justify-center p-0 transition-all duration-500 ${isOpenChat ? "opacity-100 visible" : "opacity-0 invisible"}`}>
         {/* Backdrop */}
         <div className={`absolute inset-0 bg-background/90 backdrop-blur-xl transition-opacity duration-500 ${isOpenChat ? "opacity-100" : "opacity-0"}`} onClick={() => setIsOpenChat(false)}></div>
 
         {/* Modal content */}
-        <div className={`bg-background border border-text-secondary/20 w-full lg:w-[450px] h-[90vh] rounded-t-3xl lg:rounded-3xl shadow-2xl z-10 flex flex-col transition-all duration-500 transform ${isOpenChat ? "translate-y-0 scale-100" : "translate-y-full lg:translate-y-8 lg:scale-95 opacity-0"}`}>
+        <div className={`bg-background w-full h-[100dvh] shadow-2xl z-10 flex flex-col transition-all duration-500 transform ${isOpenChat ? "translate-y-0 scale-100 opacity-100" : "translate-y-12 scale-95 opacity-0"}`}>
           {/* Header */}
-          <div className="flex justify-between items-center p-6 border-b border-text-secondary/10 bg-background rounded-t-3xl relative z-20">
+          <div className="flex justify-between items-center p-4 md:p-6 border-b border-text-secondary/10 bg-background relative z-20">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-thirdary flex items-center justify-center text-text-primary font-black border border-text-secondary/10">AI</div>
               <div>
@@ -346,22 +380,34 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
                 </span>
               </div>
             </div>
-            <button onClick={() => setIsOpenChat(false)} className="text-text-secondary hover:text-text-primary transition-colors p-2 bg-text-secondary/5 rounded-full">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={setInitialWelcomeMessage} 
+                className="text-text-secondary hover:text-red-500 transition-colors p-2 bg-text-secondary/5 rounded-full"
+                title="Hapus / Mulai Baru"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                </svg>
+              </button>
+              <button onClick={() => setIsOpenChat(false)} className="text-text-secondary hover:text-text-primary transition-colors p-2 bg-text-secondary/5 rounded-full" title="Tutup">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
           </div>
 
           {/* Chat Messages */}
-          <div className="flex-1 overflow-y-auto p-6 scroll-smooth custom-scrollbar bg-thirdary/10 flex flex-col gap-4">
+          <div className="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth custom-scrollbar bg-thirdary/10 flex flex-col items-center">
+            <div className="w-full max-w-4xl flex flex-col gap-4 pb-4">
             {chatMessages.map((msg) => (
               <div key={msg.id} className={`flex w-full ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                 <div className={`max-w-[85%] rounded-2xl px-5 py-3 ${msg.sender === "user" ? "bg-text-primary text-background rounded-tr-sm" : "bg-background border border-text-secondary/10 text-text-primary rounded-tl-sm shadow-sm"}`}>
                   {msg.sender === "user" ? (
                     <p className="text-sm font-medium leading-relaxed whitespace-pre-wrap">{msg.text}</p>
                   ) : (
-                    <div className="text-sm font-medium leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-headings:mb-2 prose-headings:mt-3 prose-a:text-thirdary prose-code:bg-text-secondary/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs overflow-hidden">
+                    <div className="text-sm font-medium leading-relaxed prose prose-sm max-w-none prose-p:my-1 prose-headings:mb-2 prose-headings:mt-3 prose-a:text-text-primary prose-code:bg-text-secondary/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-xs overflow-hidden">
                       <ReactMarkdown 
                         remarkPlugins={[remarkGfm]}
                         components={{
@@ -371,7 +417,7 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
                           ul: ({node, ...props}) => <ul className="list-disc ml-4 mb-2 space-y-1" {...props} />,
                           ol: ({node, ...props}) => <ol className="list-decimal ml-4 mb-2 space-y-1" {...props} />,
                           li: ({node, ...props}) => <li className="" {...props} />,
-                          a: ({node, ...props}) => <a className="text-thirdary underline hover:opacity-80 font-bold" target="_blank" rel="noopener noreferrer" {...props} />,
+                          a: ({node, ...props}) => <a className="text-text-primary underline hover:opacity-80 font-bold" target="_blank" rel="noopener noreferrer" {...props} />,
                           table: ({node, ...props}) => (
                             <div className="w-full overflow-x-auto my-3 pb-1 custom-scrollbar">
                               <table className="w-full text-left border-collapse border border-text-secondary/20 whitespace-nowrap" {...props} />
@@ -416,11 +462,12 @@ Aturan: Jawab langsung ke intinya, jangan menambahkan informasi yang tidak ada d
               </div>
             )}
             <div ref={chatEndRef} />
+            </div>
           </div>
 
           {/* Chat Input */}
-          <div className="p-4 border-t border-text-secondary/10 bg-background rounded-b-3xl">
-            <form onSubmit={handleSendChat} className="flex gap-2">
+          <div className="p-4 border-t border-text-secondary/10 bg-background flex justify-center">
+            <form onSubmit={handleSendChat} className="flex gap-2 w-full max-w-4xl">
               <input 
                 type="text" 
                 value={chatInput}

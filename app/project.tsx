@@ -229,8 +229,8 @@ export default function Project() {
                     <span className="text-xs font-bold tracking-widest text-text-secondary uppercase block mb-5">Key Features</span>
                     <ul className="space-y-4">
                       {activeProject.features.map((feature, i) => (
-                        <li key={i} className="flex items-start bg-thirdary/50 p-4 rounded-xl border border-text-secondary/5">
-                          <span className="text-text-primary mr-3 font-black mt-0.5">&rarr;</span>
+                        <li key={i} className="flex items-center bg-thirdary/50 p-4 rounded-xl border border-text-secondary/5">
+                          <span className="text-text-primary mr-3 font-black">&rarr;</span>
                           <span className="text-sm font-bold text-text-primary uppercase tracking-wide">{feature}</span>
                         </li>
                       ))}
@@ -243,9 +243,18 @@ export default function Project() {
                   <a href={activeProject.liveDemoUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center font-bold text-sm tracking-widest uppercase bg-text-primary text-background py-4 rounded-xl hover:-translate-y-1 transition-transform duration-300">
                     Live Demo
                   </a>
-                  <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 text-center font-bold text-sm tracking-widest uppercase border-2 border-text-secondary/20 text-text-primary hover:border-text-primary hover:-translate-y-1 transition-all duration-300 py-4 rounded-xl">
-                    Source Code
-                  </a>
+                  {activeProject.isPrivateRepo ? (
+                    <button disabled className="flex-1 flex justify-center items-center gap-2 text-center font-bold text-sm tracking-widest uppercase border-2 border-text-secondary/20 text-text-secondary opacity-50 cursor-not-allowed py-4 rounded-xl">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      Source Code
+                    </button>
+                  ) : (
+                    <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer" className="flex-1 flex justify-center items-center gap-2 text-center font-bold text-sm tracking-widest uppercase border-2 border-text-secondary/20 text-text-primary hover:border-text-primary hover:-translate-y-1 transition-all duration-300 py-4 rounded-xl">
+                      Source Code
+                    </a>
+                  )}
                 </div>
               </motion.div>
             </div>
@@ -267,6 +276,7 @@ const projectList = [
     tech: ["Go (Fiber)", "PostgreSQL", "WhatsMeow", "Next.js", "TypeScript", "Tailwind CSS"],
     githubUrl: "https://github.com/RyHarJr",
     liveDemoUrl: "https://jadibotwa.xyz",
+    isPrivateRepo: true,
   },
   {
     index: 1,
@@ -278,6 +288,7 @@ const projectList = [
     tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Express.js", "Prisma ORM", "MySQL"],
     githubUrl: "https://github.com/RyHarJr",
     liveDemoUrl: "https://ryhar-panel.my.id",
+    isPrivateRepo: true,
   },
   {
     index: 2,
@@ -289,5 +300,6 @@ const projectList = [
     tech: ["Next.js", "Tailwind CSS", "Framer Motion"],
     githubUrl: "https://github.com/RyHarJr/portofoliov2",
     liveDemoUrl: "https://ryhar.my.id",
+    isPrivateRepo: false,
   },
 ]
